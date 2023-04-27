@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Listview from "./components/Listview";
 
 
 function App() {
 
   return (
-
-    <h1>hshshsh</h1>
-
+    <div className="h-full">
+      <Listview />
+    </div>
   )
 }
 
