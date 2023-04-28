@@ -1,11 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Listview from "./components/Listview";
+import Listview from "./pages/Listview";
+import { NavBar } from "./components";
+import Login from "./pages/Login";
 
 
 function App() {
 
   return (
-    <div className="h-full">
+    <div >
+      <NavBar />
       <Listview />
     </div>
   )
