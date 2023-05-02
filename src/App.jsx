@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Listview from "./pages/Listview";
 import { NavBar } from "./components";
-import Login from "./pages/Login";
+import { Charts, HandleReport, Listview, Login } from "./pages";
+
 
 
 function App() {
@@ -9,7 +9,16 @@ function App() {
   return (
     <div >
       <NavBar />
-      <Listview />
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Listview />} />
+          <Route path="/charts" element={<Charts />} />
+          <Route path="/handlereport/:id" element={<HandleReport />} />
+
+        </Routes>
+
+      </Router>
     </div>
   )
 }
