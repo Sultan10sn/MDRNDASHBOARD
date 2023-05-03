@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Sidebar() {
+
+    const [show, setShow] = useState(false)
+
     return (
         <div className="flex">
-            <div className="flex flex-col h-screen p-3 bg-white shadow w-52">
+            <div className={`flex flex-col h-screen p-3 bg-white shadow w-52`}>
                 <div className="space-y-3">
                     <div className="flex items-center">
                         <h2 className="text-xl font-bold">Dashboard</h2>
