@@ -1,12 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { NavBar, Sidebar } from "./components";
-import { Charts, HandleReport, Listview, Login } from "./pages";
-
+import { Dashboard, HandleReport, Listview, Login } from "./pages";
+import { useEffect } from "react";
 
 
 function App() {
-
-
 
   return (
     <div className="flex">
@@ -15,10 +13,10 @@ function App() {
         <NavBar />
         <Router>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Listview />} />
-            <Route path="/charts" element={<Charts />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/table" element={<Listview />} />
             <Route path="/handlereport/:id" element={<HandleReport />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
       </main>

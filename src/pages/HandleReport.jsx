@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import imgage from '../assets/P9.jpg'
 import { Link, useParams } from 'react-router-dom'
+
 const HandleReport = () => {
 
     const params = useParams()
@@ -13,7 +14,10 @@ const HandleReport = () => {
         <>
 
             <div className='container w-full px-6 py-4 mx-auto mt-8 max-w-9xl md:h-screen lg:py-0'>
-                <Link to='/' className='text-lg font-bold leading-normal text-gray-800'>back</Link>
+                <Link to='/' className='flex items-end gap-1 text-lg font-bold leading-normal text-gray-800'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                    back</Link>
                 <div className='w-full h-auto bg-white rounded-lg shadow dark:border xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
                     <div className='flex justify-between pt-6'>
                         <div className='flex flex-col flex-1 pl-11'>
