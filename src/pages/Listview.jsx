@@ -1,69 +1,8 @@
 import React from 'react'
 import { Row, Selection } from '../components'
-
+import { fakeData } from '../database'
 
 const Listview = () => {
-
-
-    const fakeData = [
-        {
-            reporter: null,
-            reported: 4,
-            content_id: 372,
-            type: "Gore/Harm",
-            created_at: "2023-04-25T17:13:40.689352",
-            completed: false,
-            link: "https://mdrn.com/post/372/",
-            response: "",
-            content_type: "post",
-            status: "received",
-            content: "Violence is the best",
-
-        },
-        {
-            reporter: null,
-            reported: 7,
-            content_id: 427,
-            type: "Gore/Harm",
-            created_at: "2023-04-25T12:43:40.689352",
-            completed: false,
-            link: "https://mdrn.com/post/427/",
-            response: "",
-            content_type: "post",
-            status: "received",
-            content: "I hate everyone die die die",
-
-        },
-        {
-            reporter: null,
-            reported: 14,
-            content_id: 83,
-            type: "Gore/Harm",
-            created_at: "2023-04-25T17:32:40.689352",
-            completed: false,
-            link: "https://mdrn.com/post/83/",
-            response: "",
-            content_type: "post",
-            status: "received",
-            content: "I wantto kill myself",
-
-        },
-        {
-            reporter: null,
-            reported: 54,
-            content_id: 751,
-            type: "Gore/Harm",
-            created_at: "2023-04-25T09:28:40.689352",
-            completed: false,
-            link: "https://mdrn.com/post/751/",
-            response: "",
-            content_type: "post",
-            status: "received",
-            content: "kill yourself",
-
-        }]
-
-
     return (
         <div className='container px-6 py-2 mx-auto mt-6 max-w-7xl md:h-screen lg:py-0'>
             <div className='w-full h-auto bg-white rounded-lg shadow dark:border xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
