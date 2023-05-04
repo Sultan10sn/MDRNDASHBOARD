@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Chartbar, Piechart, Report, Selection } from '../components'
 import { fakeData, data, PiechartData } from '../database'
 
 
 const Dashboard = () => {
+
+  const [version, setVersion] = useState([
+    '11.2',
+    '12.3',
+    '13.5'
+  ])
+
+  const [time, setTime] = useState([
+    'monthly',
+    'weekly',
+    'dayly'
+  ])
+
+
+
+
   return (
     <div className='container max-w-6xl px-6 py-2 mx-auto mt-6 md:h-screen lg:py-0'>
       <div className='w-full h-auto bg-white rounded-lg shadow dark:border xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
