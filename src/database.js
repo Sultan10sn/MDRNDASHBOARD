@@ -11,6 +11,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "Violence is the best",
+        severity: 4
 
     },
     {
@@ -25,6 +26,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "I hate everyone die die die",
+        severity: 4
 
     },
     {
@@ -39,6 +41,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "I wantto kill myself",
+        severity: 4
 
     },
     {
@@ -53,8 +56,55 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "kill yourself",
+        severity: 4
 
-    }]
+    },
+    {
+        reporter: null,
+        reported: 54,
+        content_id: 5,
+        type: "Harassment",
+        created_at: "2023-04-25T09:28:40.689352",
+        completed: false,
+        link: "https://mdrn.com/post/5/",
+        response: "",
+        content_type: "post",
+        status: "received",
+        content: "ahhherhf",
+        severity: 3
+
+    },
+    {
+        reporter: null,
+        reported: 54,
+        content_id: 71,
+        type: "Spam",
+        created_at: "2023-04-25T09:28:40.689352",
+        completed: false,
+        link: "https://mdrn.com/post/71/",
+        response: "",
+        content_type: "post",
+        status: "received",
+        content: "eeeeeeeuiheoudhuedehduehded",
+        severity: 2
+
+    },
+    {
+        reporter: null,
+        reported: 54,
+        content_id: 541,
+        type: "False information",
+        created_at: "2023-04-25T09:28:40.689352",
+        completed: false,
+        link: "https://mdrn.com/post/541/",
+        response: "",
+        content_type: "post",
+        status: "received",
+        content: "i made your art",
+        severity: 1
+
+    }
+]
 
 export const data = [
     {
