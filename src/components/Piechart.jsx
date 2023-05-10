@@ -23,7 +23,7 @@ const Piechart = ({ data }) => {
                     arcLabelsSkipAngle={10}
                     arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
                 />
-                <p className='font-bold leading-normal text-gray-800'>Overview(20)</p>
+                <p className='font-bold leading-normal text-gray-800'>Overview({data.length})</p>
             </div>
         </>
     )

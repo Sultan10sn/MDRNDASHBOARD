@@ -7,13 +7,13 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Report({ title, data }) {
+export default function Report({ title, apidata }) {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-red-500 px-11 py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-700">
                     {title}
-                    <span className='px-1 text-gray-900 border-none rounded-full bg-gray-50 '>{data.length}</span>
+                    <span className='px-1 text-gray-900 border-none rounded-full bg-gray-50 '>{apidata.length}</span>
                     <ChevronDownIcon className="w-5 h-5 -mr-1 text-gray-100" aria-hidden="true" />
                 </Menu.Button>
             </div>
@@ -29,17 +29,18 @@ export default function Report({ title, data }) {
             >
                 <Menu.Items className="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {
-                        data.map(data => {
+                        apidata.map(data => {
 
                             return <div className="py-1" key={data.content_id}>
                                 <Menu.Item>
                                     {({ active }) => (
                                         <Link
-                                            to={`/table`}
+                                            to={`/list/${data.content_id}`}
                                             className={classNames(
                                                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                 'block px-4 py-2 text-sm'
                                             )}
+                                            state={{ data: "hi" }}
                                         >
                                             {data.type}
                                         </Link>
