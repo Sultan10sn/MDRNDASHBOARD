@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
-import { Row, Selection } from '../components'
+import { Row } from '../components'
 import { fakeData } from '../database'
 
 const Listview = () => {
 
-    const [versionVal, setVersionVal] = useState("")
     const [timeVal, setTimeVal] = useState('')
-
-    const versions = [
-        '11.2',
-        '12.3',
-        '13.5'
-    ]
 
     const times = [
         'monthly',
@@ -34,17 +27,20 @@ const Listview = () => {
                 <div className='flex items-start justify-center w-full h-full p-11'>
                     <div className='container max-w-4xl'>
                         <div className='flex justify-end gap-10 mb-3'>
-                            <Selection
-                                versions={versions}
-                                versionVal={versionVal}
-                                handleVersion={handleVersion}
-                                times={times}
-                                timeVal={timeVal}
-                                handleTime={handleTime} />
+                            <div>
+                                <label htmlFor="TIME" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">TIME</label>
+                                <select id="TIME" value={timeVal} onChange={handleTime} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    {
+                                        times.map(time => {
+                                            return <option key={time} value={time}>{time}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
                         </div>
                         <div className='mb-4'>
-                            <h1 className='font-bold text-gray-900'>GORE/HARMT</h1>
-                            <p className='font-normal text-gray-900'>ACTIVE REPORTS (20)</p>
+                            <h1 className='font-bold text-gray-900'>{fakeData[0].type}</h1>
+                            <p className='font-normal text-gray-900'>ACTIVE REPORTS({fakeData.length})</p>
                         </div>
                         <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
