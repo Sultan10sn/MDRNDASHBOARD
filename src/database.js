@@ -11,6 +11,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "Violence is the best",
+        date: 'daily',
         severity: 4
 
     },
@@ -26,6 +27,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "I hate everyone die die die",
+        date: 'daily',
         severity: 4
 
     },
@@ -41,6 +43,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "I wantto kill myself",
+        date: 'daily',
         severity: 4
 
     },
@@ -56,6 +59,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "kill yourself",
+        date: 'weekliy',
         severity: 4
 
     },
@@ -71,6 +75,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "ahhherhf",
+        date: 'weekliy',
         severity: 3
 
     },
@@ -86,6 +91,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "eeeeeeeuiheoudhuedehduehded",
+        date: 'monthly',
         severity: 2
 
     },
@@ -101,6 +107,7 @@ export const fakeData = [
         content_type: "post",
         status: "received",
         content: "i made your art",
+        date: 'monthly',
         severity: 1
 
     }

@@ -1,21 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { fakeData } from '../database'
 import { Row } from '../components'
 
+
 const ListviewAll = () => {
 
-    const [timeVal, setTimeVal] = useState('')
-
-    const times = [
-        'monthly',
-        'weekly',
-        'dayly'
-    ]
 
 
-    const handleTime = (e) => {
-        setTimeVal(e.target.value)
+    const [reportList, setReportList] = useState([])
+    const [apiData, setApiData] = useState(fakeData)
+    const filteredByDate = (date) => {
+        setApiData(
+            fakeData.filter(data => {
+                return data.date === date
+            })
+        )
     }
+
+    const date = Array.from(
+        new Set(fakeData.map(data => data.date))
+    )
+
+
+    useEffect(() => {
+        fetch('https://mdrn-dev.herokuapp.com/api/v1/savereport/')
+            .then(res => {
+                res.json()
+                console.log(res)
+            }).then(data => {
+                console.log(data)
+                setReportList(data)
+            }).then(err => {
+                console.log(err)
+            })
+    }, [])
+
+    console.log(data)
 
 
     return (
@@ -26,9 +46,10 @@ const ListviewAll = () => {
                         <div className='flex justify-end gap-10 mb-3'>
                             <div>
                                 <label htmlFor="TIME" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">TIME</label>
-                                <select id="TIME" value={timeVal} onChange={handleTime} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <select id="TIME" onChange={(e) => (filteredByDate(e.target.value))} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option disabled defaultValue={''}>All</option>
                                     {
-                                        times.map(time => {
+                                        date.map(time => {
                                             return <option key={time} value={time}>{time}</option>
                                         })
                                     }
@@ -36,8 +57,8 @@ const ListviewAll = () => {
                             </div>
                         </div>
                         <div className='mb-4'>
-                            <h1 className='font-bold text-gray-900'>{fakeData[0].type}</h1>
-                            <p className='font-normal text-gray-900'>ACTIVE REPORTS({fakeData.length})</p>
+                            <h1 className='font-bold text-gray-900'>{apiData[0].type}</h1>
+                            <p className='font-normal text-gray-900'>ACTIVE REPORTS({apiData.length})</p>
                         </div>
                         <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -62,7 +83,7 @@ const ListviewAll = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        fakeData.map(data => (
+                                        apiData.map(data => (
                                             <Row key={data.content_id} {...data} />
                                         ))
                                     }

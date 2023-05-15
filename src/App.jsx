@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HideSidebar, NavBar, ScrollToTop, Sidebar } from "./components";
-import { Contact, Dashboard, HandleReport, Listview, ListviewAll, Login } from "./pages";
+import { Dashboard, HandleReport, Listview, ListviewAll, Login } from "./pages";
 
 
 function App() {
@@ -20,8 +20,6 @@ function App() {
                 <Route path="/list" element={<ListviewAll />} />
                 <Route path="/list/:id" element={<Listview />} />
                 <Route path="/handlereport/:id" element={<HandleReport />} />
-                <Route path="/contact" element={<Contact />} />
-
                 <Route path="/login" element={<Login />} />
               </Routes>
 

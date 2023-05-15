@@ -3,9 +3,9 @@ import React from 'react'
 const Contact = () => {
     return (
         <div className="dark:bg-gray-900">
-            <div className="max-w-screen-md px-4 py-4 mx-auto lg:py-11">
-                <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-center text-red-500 dark:text-white">Contact Us</h2>
-                <p className="mb-6 font-light text-center text-gray-500 lg:mb-11 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback ? Let us know.</p>
+            <div className="max-w-lg px-4 py-4 mx-auto lg:py-11">
+                <h2 className="mb-4 text-2xl font-extrabold tracking-tight text-center text-red-500 dark:text-white">Contact Us</h2>
+                <p className="mb-6 font-light text-center text-gray-700 lg:mb-11 dark:text-gray-400 sm:text-lg">Got a technical issue? Want to send feedback ? Let us know.</p>
                 <form action="#" className="space-y-8">
                     <div>
                         <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
@@ -13,7 +13,7 @@ const Contact = () => {
                     </div>
                     <div>
                         <label for="subject" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
-                        <input type="text" id="subject" className="block w-full p-3 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required />
+                        <input type="text" id="subject" className="block w-full p-6 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required />
                     </div>
                     <div className="sm:col-span-2">
                         <label for="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
