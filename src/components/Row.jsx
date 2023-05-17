@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Row = ({ reported, content_type, link, created_at, content_id }) => {
+const Row = ({ reported, content_type, link, created_at, id }) => {
 
 
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ const Row = ({ reported, content_type, link, created_at, content_id }) => {
                 {created_at}
             </td>
             <td className="px-6 py-4 text-right">
-                <button onClick={() => navigate(`/handlereport/${content_id}`)} className='p-3 text-gray-100 bg-red-500 rounded-lg hover:bg-red-600'>Manage</button>
+                <button onClick={() => navigate(`/handlereport/${id}`)} className='p-3 text-gray-100 bg-red-500 rounded-lg hover:bg-red-600'>Manage</button>
             </td>
         </tr>
     )

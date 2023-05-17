@@ -6,10 +6,10 @@ const Piechart = ({ data }) => {
 
     return (
         <>
-            <div className='flex flex-col items-center h-80'>
+            <div className='flex flex-col items-center h-72'>
                 <ResponsivePie
                     data={data}
-                    margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+                    margin={{ top: 50, right: 80, bottom: 60, left: 80 }}
                     innerRadius={0.5}
                     padAngle={0.7}
                     cornerRadius={3}

@@ -3,10 +3,11 @@ import { HideSidebar, NavBar, ScrollToTop, Sidebar } from "./components";
 import { Dashboard, HandleReport, Listview, ListviewAll, Login } from "./pages";
 
 
+
 function App() {
 
   return (
-    <>
+    <div className="bg-gray-50">
       <Router>
         <ScrollToTop>
           <div className="flex">
@@ -27,7 +28,7 @@ function App() {
           </div>
         </ScrollToTop>
       </Router>
-    </>
+    </div>
   )
 }
 

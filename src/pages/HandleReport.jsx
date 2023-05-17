@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 
 const HandleReport = () => {
 
-    const [isAdmin, setIsAdmin] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(true)
 
 
     const params = useParams()

@@ -11,7 +11,7 @@ export default function Report({ title, apidata }) {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-red-500 px-11 py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-700">
+                <Menu.Button className="inline-flex w-full px-2 py-1 justify-center gap-x-1.5 rounded-md bg-red-500 md:px-11 md:py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-700">
                     {title}
                     <span className='px-1 text-gray-900 border-none rounded-full bg-gray-50 '>{apidata.length}</span>
                     <ChevronDownIcon className="w-5 h-5 -mr-1 text-gray-100" aria-hidden="true" />

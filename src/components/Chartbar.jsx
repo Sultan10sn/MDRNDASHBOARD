@@ -8,7 +8,7 @@ const Chartbar = ({ data }) => {
             data={data}
             keys={["degress"]}
             indexBy="day"
-            margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+            margin={{ top: 50, right: 30, bottom: 50, left: 60 }}
             padding={0.4}
             valueScale={{ type: "linear" }}
             colors="red"

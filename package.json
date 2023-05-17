@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.17",
     "@nivo/bar": "^0.81.0",
     "@nivo/pie": "^0.81.0",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",

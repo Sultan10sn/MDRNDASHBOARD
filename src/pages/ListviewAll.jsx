@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { fakeData } from '../database'
 import { Row } from '../components'
+import useFetch from '../hooks/useFetch'
 
 
 const ListviewAll = () => {
 
-
-
-    const [reportList, setReportList] = useState([])
     const [apiData, setApiData] = useState(fakeData)
+    const { data: reportList, loading, error } = useFetch('https://mdrn-dev.herokuapp.com/api/v1/savereport/')
+
+
     const filteredByDate = (date) => {
         setApiData(
             fakeData.filter(data => {
                 return data.date === date
-            })
-        )
+            }))
     }
 
     const date = Array.from(
@@ -22,24 +22,13 @@ const ListviewAll = () => {
     )
 
 
-    useEffect(() => {
-        fetch('https://mdrn-dev.herokuapp.com/api/v1/savereport/')
-            .then(res => {
-                res.json()
-                console.log(res)
-            }).then(data => {
-                console.log(data)
-                setReportList(data)
-            }).then(err => {
-                console.log(err)
-            })
-    }, [])
+    console.log(reportList)
 
-    console.log(data)
-
+    if (loading) return <div>Loading</div>
+    if (error) return <div>something Went Wrong</div>
 
     return (
-        <div className='container px-6 py-2 mx-auto mt-6 max-w-7xl md:h-screen lg:py-0'>
+        <div className='container max-w-4xl px-6 py-2 mx-auto mt-6 md:max-w-7xl md:h-screen lg:py-0'>
             <div className='w-full h-auto bg-white rounded-lg shadow dark:border xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
                 <div className='flex items-start justify-center w-full h-full p-11'>
                     <div className='container max-w-4xl'>
@@ -57,8 +46,8 @@ const ListviewAll = () => {
                             </div>
                         </div>
                         <div className='mb-4'>
-                            <h1 className='font-bold text-gray-900'>{apiData[0].type}</h1>
-                            <p className='font-normal text-gray-900'>ACTIVE REPORTS({apiData.length})</p>
+                            <h1 className='font-bold text-gray-900'>{reportList[0].type}</h1>
+                            <p className='font-normal text-gray-900'>ACTIVE REPORTS({reportList.length})</p>
                         </div>
                         <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -83,8 +72,8 @@ const ListviewAll = () => {
                                 </thead>
                                 <tbody>
                                     {
-                                        apiData.map(data => (
-                                            <Row key={data.content_id} {...data} />
+                                        reportList.map(data => (
+                                            <Row key={data.id} {...data} />
                                         ))
                                     }
                                 </tbody>
