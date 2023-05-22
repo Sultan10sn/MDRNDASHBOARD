@@ -14,7 +14,7 @@ const Dashboard = () => {
   )
 
   const { data: activeReport } = useFetch('https://mdrn-dev.herokuapp.com/api/v1/activereports')
-  const { data: oldrepors } = useFetch('https://mdrn-dev.herokuapp.com/api/v1/activereports')
+  const { data: oldrepors } = useFetch('https://mdrn-dev.herokuapp.com/api/v1/oldreports')
 
 
   console.log(activeReport)
