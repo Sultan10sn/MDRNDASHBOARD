@@ -7,13 +7,13 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Report({ title, apidata }) {
+export default function Report({ title, data }) {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="inline-flex w-full px-2 py-1 justify-center gap-x-1.5 rounded-md bg-red-500 md:px-11 md:py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-700">
                     {title}
-                    <span className='px-1 text-gray-900 border-none rounded-full bg-gray-50 '>{apidata.length}</span>
+                    <span className='px-1 text-gray-900 border-none rounded-full bg-gray-50 '>{data.length}</span>
                     <ChevronDownIcon className="w-5 h-5 -mr-1 text-gray-100" aria-hidden="true" />
                 </Menu.Button>
             </div>
@@ -29,13 +29,13 @@ export default function Report({ title, apidata }) {
             >
                 <Menu.Items className="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {
-                        apidata.map(data => {
+                        data.map(data => {
 
-                            return <div className="py-1" key={data.content_id}>
+                            return <div className="py-1" key={data.id}>
                                 <Menu.Item>
                                     {({ active }) => (
                                         <Link
-                                            to={`/list/${data.content_id}`}
+                                            to={`/list/${data.id}`}
                                             className={classNames(
                                                 active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                                 'block px-4 py-2 text-sm'

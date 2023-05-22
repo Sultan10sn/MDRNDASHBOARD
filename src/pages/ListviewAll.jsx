@@ -1,31 +1,50 @@
 import React, { useState } from 'react'
-import { fakeData } from '../database'
-import { Row } from '../components'
+import { Error, Row, Spinner } from '../components'
 import useFetch from '../hooks/useFetch'
 
 
 const ListviewAll = () => {
 
-    const [apiData, setApiData] = useState(fakeData)
-    const { data: reportList, loading, error } = useFetch('https://mdrn-dev.herokuapp.com/api/v1/savereport/')
+    const [type, setType] = useState('')
+    const { data: reportList, loading, error } = useFetch(
+        type ? `https://mdrn-dev.herokuapp.com/api/v1/get_reports?type=${type}`
+            : 'https://mdrn-dev.herokuapp.com/api/v1/savereport/'
+    )
+
+    const types = [
+        'Gore/Harm',
+        'HateSpeech',
+        'Inappropriate',
+        'Bullying',
+        'Violence',
+        'Spam',
+        'Fraud/Scam',
+        'FalseInfor',
+        'IP',
+        'Impersonating',
+        'Other'
+    ]
+
+
+    console.log(reportList)
 
 
     const filteredByDate = (date) => {
         setApiData(
-            fakeData.filter(data => {
+            reportList.filter(data => {
                 return data.date === date
             }))
     }
 
     const date = Array.from(
-        new Set(fakeData.map(data => data.date))
+        new Set(reportList.map(data => data.date))
     )
 
 
-    console.log(reportList)
 
-    if (loading) return <div>Loading</div>
-    if (error) return <div>something Went Wrong</div>
+
+    if (loading) return <Spinner />
+    if (error) return <Error />
 
     return (
         <div className='container max-w-4xl px-6 py-2 mx-auto mt-6 md:max-w-7xl md:h-screen lg:py-0'>
@@ -33,6 +52,17 @@ const ListviewAll = () => {
                 <div className='flex items-start justify-center w-full h-full p-11'>
                     <div className='container max-w-4xl'>
                         <div className='flex justify-end gap-10 mb-3'>
+                            <div>                        <label htmlFor="type" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Type</label>
+                                <select id="type" value={type} onChange={(e) => (setType(e.target.value))} className="bg-gray-50 border w-32 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option disabled defaultValue=''>All</option>
+                                    {
+                                        types.map(type => {
+                                            return <option key={type} value={type}>{type}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
+
                             <div>
                                 <label htmlFor="TIME" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">TIME</label>
                                 <select id="TIME" onChange={(e) => (filteredByDate(e.target.value))} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -46,7 +76,7 @@ const ListviewAll = () => {
                             </div>
                         </div>
                         <div className='mb-4'>
-                            <h1 className='font-bold text-gray-900'>{reportList[0].type}</h1>
+                            <h1 className='font-bold text-gray-900'>{reportList.length > 0 && reportList[0].type}</h1>
                             <p className='font-normal text-gray-900'>ACTIVE REPORTS({reportList.length})</p>
                         </div>
                         <div className="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
@@ -73,7 +103,7 @@ const ListviewAll = () => {
                                 <tbody>
                                     {
                                         reportList.map(data => (
-                                            <Row key={data.id} {...data} />
+                                            <Row key={data.id} data={data} />
                                         ))
                                     }
                                 </tbody>

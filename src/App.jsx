@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { HideSidebar, NavBar, ScrollToTop, Sidebar } from "./components";
-import { Dashboard, HandleReport, Listview, ListviewAll, Login } from "./pages";
+import { Dashboard, HandleReport, Listview, ListviewAll, Login, Severity } from "./pages";
 
 
 
@@ -19,6 +19,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/list" element={<ListviewAll />} />
+                <Route path="/severity" element={<Severity />} />
                 <Route path="/list/:id" element={<Listview />} />
                 <Route path="/handlereport/:id" element={<HandleReport />} />
                 <Route path="/login" element={<Login />} />
