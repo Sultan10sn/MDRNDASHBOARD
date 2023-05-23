@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
-import { Row } from '../components'
+import { Error, Row, Spinner } from '../components'
 
 const Severity = () => {
 
@@ -11,8 +11,8 @@ const Severity = () => {
 
     console.log(severity)
 
-    if (loading) return <div>Loading</div>
-    if (error) return <div>something Went Wrong</div>
+    if (loading) return <Spinner />
+    if (error) return <Error />
 
     return (
         <div className='container max-w-4xl px-6 py-2 mx-auto mt-6 md:max-w-7xl md:h-screen lg:py-0'>
