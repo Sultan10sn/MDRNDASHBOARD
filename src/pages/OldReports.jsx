@@ -5,11 +5,14 @@ import axios from 'axios';
 
 const OldReports = () => {
 
-    const [selectedType, setSelectedType] = useState('')
     const [selectedSeverity, setSeletedSeverity] = useState(1)
-    const [filtredData, setFilteredData] = useState([])
-    const { data: oldReport, loading, error } = useFetch(`https://mdrn-dev.herokuapp.com/api/v1/get_old_reports?type=${selectedType}`)
-    const { data: oldSeverity } = useFetch(`https://mdrn-dev.herokuapp.com/api/v1/get_old_severity?severity=${selectedSeverity}`)
+    const [selectedType, setSelectedType] = useState('')
+    const [filteredReport, setFilteredReport] = useState([])
+    const { data: oldReports, loading, error } = useFetch(
+        selectedType ? `https://mdrn-dev.herokuapp.com/api/v1/get_old_reports?type=${selectedType}`
+            : `https://mdrn-dev.herokuapp.com/api/v1/get_old_severity?severity=${selectedSeverity}`
+    )
+    // const { data: oldSeverity } = useFetch(`https://mdrn-dev.herokuapp.com/api/v1/get_old_severity?severity=${selectedSeverity}`)
     const severities = [1, 2, 3, 4]
     const types = [
         'Gore/Harm',
@@ -25,15 +28,16 @@ const OldReports = () => {
         'Other'
     ]
 
-    useEffect(() => {
 
 
-        const combinedData = [...oldReport, ...oldSeverity]
-
-        setFilteredData(
-            combinedData
-        )
-    }, [oldReport, oldSeverity])
+    const handleType = (e) => {
+        setSelectedType(e.target.value)
+        setSeletedSeverity(1)
+    }
+    const handleSeverity = (e) => {
+        setSeletedSeverity(e.target.value)
+        setSelectedType('')
+    }
 
 
     if (loading) return <Spinner />
@@ -45,9 +49,10 @@ const OldReports = () => {
                 <div className='flex items-start justify-center w-full h-full p-11'>
                     <div className='container max-w-4xl'>
                         <div className='flex justify-end gap-10 mb-3'>
-                            <div>                        <label htmlFor="type" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Type</label>
-                                <select id="type" value={selectedType} onChange={(e) => (setSelectedType(e.target.value))} className="bg-gray-50 border w-32 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option defaultValue=''>All</option>
+                            <div className='flex items-center gap-4'>
+                                <label htmlFor="type" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Type</label>
+                                <select id="type" value={selectedType} onChange={handleType} className="bg-gray-50 border w-32 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option defaultValue=''>-- Choose --</option>
                                     {
                                         types.map(type => {
                                             return <option key={type} value={type}>{type}</option>
@@ -55,10 +60,10 @@ const OldReports = () => {
                                     }
                                 </select>
                             </div>
-                            <div>
+                            <div className='flex items-center gap-4 '>
                                 <label htmlFor="SEVERITY" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Severity</label>
-                                <select id="SEVERITY" value={selectedSeverity} onChange={(e) => setSeletedSeverity(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option disabled defaultValue={''}>All</option>
+                                <select id="SEVERITY" value={selectedSeverity} onChange={handleSeverity} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option disabled defaultValue={''}>-- Choose --</option>
                                     {
                                         severities.map(severity => {
                                             return <option key={severity} value={severity}>{severity}</option>
@@ -107,7 +112,13 @@ const OldReports = () => {
                                 <tbody>
                                     {
 
-                                        filtredData.map(data => (
+                                        // selectedType && oldReport.map(data => (
+                                        //     <Row key={data.id} data={data} />
+                                        // )) || oldSeverity && oldSeverity.map(data => (
+                                        //     <Row key={data.id} data={data} />
+                                        // ))
+
+                                        oldReports.map(data => (
                                             <Row key={data.id} data={data} />
                                         ))
                                     }
