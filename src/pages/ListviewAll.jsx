@@ -54,7 +54,7 @@ const ListviewAll = () => {
                         <div className='flex justify-end gap-10 mb-3'>
                             <div>                        <label htmlFor="type" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Type</label>
                                 <select id="type" value={type} onChange={(e) => (setType(e.target.value))} className="bg-gray-50 border w-32 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option disabled defaultValue=''>All</option>
+                                    <option defaultValue=''>All</option>
                                     {
                                         types.map(type => {
                                             return <option key={type} value={type}>{type}</option>

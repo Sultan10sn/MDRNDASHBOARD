@@ -1,27 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import imgage from '../assets/P9.jpg'
-import { Link, useParams } from 'react-router-dom'
-
-const HandleReport = () => {
+const HandleOldReports = () => {
 
     const [isAdmin, setIsAdmin] = useState(true)
-
-
-    const params = useParams()
-
-    useEffect(() => {
-        console.log(params.id)
-    })
-
-
-    const handleAdmins = () => {
-        setIsAdmin(prevSttate => !prevSttate)
-    }
 
     return (
         <>
             <div className='container w-full px-6 py-4 mx-auto mt-8 max-w-9xl md:h-screen lg:py-0'>
-                <Link to='/' className='flex items-end gap-1 text-lg font-bold leading-normal text-gray-800'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <Link to='/oldreports' className='flex items-end gap-1 text-lg font-bold leading-normal text-gray-800'> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                 </svg>
                     back</Link>
@@ -55,9 +42,9 @@ const HandleReport = () => {
                             </form>
                         </div>
                         <div className='flex justify-start flex-1'>
-                            <div className='flex flex-col justify-between'>
+                            <div className='flex flex-col'>
                                 <div>
-                                    {isAdmin && <button className='px-3 py-2 text-gray-100 bg-red-500 border-none rounded-md hover:bg-red-600'>Handle Report</button>}
+                                    {isAdmin && <button className='px-3 py-3 text-gray-100 bg-red-500 border-none rounded-md hover:bg-red-600'>Handle Report</button>}
                                     <div className='flex items-center gap-7 border-b-2 mt-11'>
                                         <p className='font-bold leading-normal'>SEVERITY LEVEL:<span className='font-normal text-red-500'> 4</span> </p>
                                         <p><span className='font-bold leading-normal'> DATE:</span> 20/2/2023</p>
@@ -73,4 +60,4 @@ const HandleReport = () => {
     )
 }
 
-export default HandleReport
+export default HandleOldReports

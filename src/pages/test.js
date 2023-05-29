@@ -1,6 +1,8 @@
 // const [type, setType] = useState('')
 // const [severityVal, setSeverityVal] = useState(1)
 
+import { useEffect } from "react";
+
 // const { data: reportList, loading, error } = useFetch(
 //     type ? `https://mdrn-dev.herokuapp.com/api/v1/get_reports?type=${type}`
 //         : 'https://mdrn-dev.herokuapp.com/api/v1/savereport/'
@@ -13,6 +15,29 @@ const [oldseverity, setOldSeverity] = useState([]);
 const [filteredReports, setFilteredReports] = useState([]);
 const [selectedType, setSelectedType] = useState('');
 const [selectedSeverity, setSelectedSeverity] = useState(1);
+
+useEffect(() => {
+
+    if (selectedType) {
+        axios.get(`https://mdrn-dev.herokuapp.com/api/v1/get_reports?type=${selectedType}`)
+            .then(data => {
+                setOldReports(data.data)
+
+            }).catch(err => {
+
+                console.log(err)
+            })
+    } else {
+        axios.get(`https://mdrn-dev.herokuapp.com/api/v1/get_severity?severity=${selectedSeverity}`)
+            .then(data => {
+                setOldReports(data.data)
+
+            }).catch(err => {
+
+                console.log(err)
+            })
+    }
+}, [selectedType, selectedSeverity])
 
 useEffect(() => {
     // Fetch old reports from API or server
@@ -38,6 +63,29 @@ useEffect(() => {
         })
 
 }, []);
+
+
+// useEffect(() => {
+
+//     let filteredOldReport = oldReport
+//     let filteredOldSeverity = oldSeverity
+//     // Apply type filter
+
+//     // if (selectedType !== '') {
+//     //     filteredOldReport = filteredOldReport.filter(report => report.type === selectedType);
+//     // }
+
+//     //  Apply severity filter
+//     // if (selectedSeverity !== 0) {
+//     //     filteredOldSeverity = filteredOldSeverity.filter(report => report.severity === selectedSeverity);
+//     // }
+
+//     // updated Filter
+
+//     setFilteredReport(filteredOldReport)
+
+
+// }, [selectedType, selectedSeverity])
 
 useEffect(() => {
     // Fetch old reports from API or server
@@ -67,10 +115,10 @@ useEffect(() => {
 
 useEffect(() => {
     // Apply filters when either selectedType or selectedSeverity changes
-    filterReports();
+    filterOldReports();
 }, [selectedType, selectedSeverity]);
 
-const filterReports = () => {
+const filterOldReports = () => {
 
 
 

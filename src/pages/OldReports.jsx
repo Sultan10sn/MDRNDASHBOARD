@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import useFetch from '../hooks/useFetch'
 import { Error, Row, Spinner } from '../components'
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const OldReports = () => {
 
     const [selectedSeverity, setSeletedSeverity] = useState(1)
     const [selectedType, setSelectedType] = useState('')
-    const [filteredReport, setFilteredReport] = useState([])
+    const location = useLocation()
+    const oldReportPage = location.pathname.split("/")[1]
     const { data: oldReports, loading, error } = useFetch(
         selectedType ? `https://mdrn-dev.herokuapp.com/api/v1/get_old_reports?type=${selectedType}`
             : `https://mdrn-dev.herokuapp.com/api/v1/get_old_severity?severity=${selectedSeverity}`
@@ -38,6 +40,7 @@ const OldReports = () => {
         setSeletedSeverity(e.target.value)
         setSelectedType('')
     }
+    console.log(oldReports)
 
 
     if (loading) return <Spinner />
@@ -52,7 +55,7 @@ const OldReports = () => {
                             <div className='flex items-center gap-4'>
                                 <label htmlFor="type" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Type</label>
                                 <select id="type" value={selectedType} onChange={handleType} className="bg-gray-50 border w-32 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option defaultValue=''>-- Choose --</option>
+                                    <option defaultValue=''>Select</option>
                                     {
                                         types.map(type => {
                                             return <option key={type} value={type}>{type}</option>
@@ -63,7 +66,7 @@ const OldReports = () => {
                             <div className='flex items-center gap-4 '>
                                 <label htmlFor="SEVERITY" className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">Severity</label>
                                 <select id="SEVERITY" value={selectedSeverity} onChange={handleSeverity} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option disabled defaultValue={''}>-- Choose --</option>
+                                    <option disabled defaultValue={''}>Select</option>
                                     {
                                         severities.map(severity => {
                                             return <option key={severity} value={severity}>{severity}</option>
@@ -117,9 +120,10 @@ const OldReports = () => {
                                         // )) || oldSeverity && oldSeverity.map(data => (
                                         //     <Row key={data.id} data={data} />
                                         // ))
-
                                         oldReports.map(data => (
-                                            <Row key={data.id} data={data} />
+                                            <Row key={data.id} data={data} >
+                                                {oldReportPage}
+                                            </Row>
                                         ))
                                     }
                                 </tbody>
