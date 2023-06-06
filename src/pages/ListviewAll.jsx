@@ -5,11 +5,13 @@ import useFetch from '../hooks/useFetch'
 
 const ListviewAll = () => {
 
-    const [type, setType] = useState('')
+    const [type, setType] = useState('Gore/Harm')
     const { data: reportList, loading, error } = useFetch(
-        type ? `https://mdrn-dev.herokuapp.com/api/v1/get_reports?type=${type}`
-            : 'https://mdrn-dev.herokuapp.com/api/v1/savereport/'
+        type && `https://mdrn-dev.herokuapp.com/api/v1/get_reports?type=${type}`
     )
+
+
+
 
     const types = [
         'Gore/Harm',

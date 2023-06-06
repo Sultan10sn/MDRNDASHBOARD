@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HideSidebar, NavBar, ScrollToTop, Sidebar } from "./components";
 import { ActiveReports, Dashboard, HandleOldReports, HandleReport, Listview, ListviewAll, Login, OldReports, Severity } from "./pages";
+import PutRequest from "./pages/PutRequest";
 
 
 
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/oldreports/:id" element={<HandleOldReports />} />
                 <Route path="/list/:id" element={<Listview />} />
                 <Route path="/handlereport/:id" element={<HandleReport />} />
+                <Route path="/put" element={<PutRequest />} />
                 <Route path="/login" element={<Login />} />
               </Routes>
 
